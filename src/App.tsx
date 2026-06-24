@@ -14,6 +14,9 @@ import Membership from './components/pages/Membership';
 import Nutrition from './components/pages/Nutrition';
 import Blog from './components/pages/Blog';
 import Contact from './components/pages/Contact';
+import PrivacyPolicy from './components/pages/PrivacyPolicy';
+import TermsOfService from './components/pages/TermsOfService';
+import LiabilityWaiver from './components/pages/LiabilityWaiver';
 
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -63,6 +66,12 @@ function AppContent() {
         return <Blog />;
       case '#contact':
         return <Contact />;
+      case '#privacy-policy':
+        return <PrivacyPolicy />;
+      case '#terms-of-service':
+        return <TermsOfService />;
+      case '#liability-waiver':
+        return <LiabilityWaiver />;
       default:
         // Graceful fallback of route matches
         if (hash.startsWith('#')) {
@@ -77,6 +86,9 @@ function AppContent() {
           if (matchedRoute === 'nutrition') return <Nutrition />;
           if (matchedRoute === 'blog') return <Blog />;
           if (matchedRoute === 'contact') return <Contact />;
+          if (matchedRoute === 'privacy-policy') return <PrivacyPolicy />;
+          if (matchedRoute === 'terms-of-service') return <TermsOfService />;
+          if (matchedRoute === 'liability-waiver') return <LiabilityWaiver />;
         }
         return <Home onNavigate={navigateTo} />;
     }

@@ -35,7 +35,7 @@ export const trainers: Trainer[] = [
     experience: '11 Years',
     certifications: ['NSCA CPT', 'IFBB Advanced Coach', 'Precision Nutrition L1'],
     availableDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Saturday'],
-    image: 'https://images.unsplash.com/photo-1605296867304-46d5465a25f1?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJvZHlidWlsZGluZyUyMHdvcmtvdXQlMjBpbWFnZXMlMjBkb3dubG9hZHxlbnwwfHwwfHx8MA%3D%3D',
     socials: {
       instagram: 'https://instagram.com/viktor_steel_body',
       twitter: 'https://twitter.com/viksteel'

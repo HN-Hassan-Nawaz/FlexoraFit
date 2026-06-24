@@ -54,7 +54,7 @@ export const programs: Program[] = [
     duration: '8 Weeks',
     targetGoal: 'Peak Aerobic V02 Max',
     trainerName: 'Elena Rostova',
-    image: 'https://images.unsplash.com/photo-1502904585520-2c700ff39de4?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1669322779651-5ca89652492e?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fENhcmRpbyUyMENvbmRpdGlvbmluZ3xlbnwwfHwwfHx8MA%3D%3D'
   },
   {
     id: 'prog-beginner',

@@ -46,9 +46,9 @@ export default function Footer({ onNavigate, id }: FooterProps) {
               }}
               className="flex items-center gap-2 text-slate-900 dark:text-white select-none cursor-pointer"
             >
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-500 text-stone-950">
+              {/* <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-500 text-stone-950">
                 <Dumbbell size={18} className="stroke-[2.5]" />
-              </div>
+              </div> */}
               <span className="text-lg font-black tracking-tighter uppercase">
                 Flexora<span className="text-emerald-500">Fit</span>
               </span>
@@ -176,9 +176,9 @@ export default function Footer({ onNavigate, id }: FooterProps) {
             <span>&copy; {currentYear} FlexoraFit. All performance rights reserved.</span>
           </div>
           <div className="flex gap-4">
-            <a href="#" className="hover:text-emerald-500">Privacy Policy</a>
-            <a href="#" className="hover:text-emerald-500">Terms of Service</a>
-            <a href="#" className="hover:text-emerald-500">Liability Waiver</a>
+            <button onClick={() => handleLinkClick('#privacy-policy')} className="hover:text-emerald-500 font-medium cursor-pointer">Privacy Policy</button>
+            <button onClick={() => handleLinkClick('#terms-of-service')} className="hover:text-emerald-500 font-medium cursor-pointer">Terms of Service</button>
+            <button onClick={() => handleLinkClick('#liability-waiver')} className="hover:text-emerald-500 font-medium cursor-pointer">Liability Waiver</button>
           </div>
         </div>
       </Container>
