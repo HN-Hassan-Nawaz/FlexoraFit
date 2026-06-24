@@ -72,13 +72,13 @@ export default function Home({ onNavigate, id }: HomeProps) {
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
               <PrimaryButton
-                onClick={() => onNavigate('#membership')}
+                onClick={() => onNavigate('/membership')}
                 icon={<Sparkles size={14} />}
               >
                 Start Your Journey
               </PrimaryButton>
               <SecondaryButton
-                onClick={() => onNavigate('#daily-workout')}
+                onClick={() => onNavigate('/daily-workout')}
                 icon={<Activity size={14} className="text-emerald-500" />}
               >
                 View Daily Workout
@@ -234,14 +234,14 @@ export default function Home({ onNavigate, id }: HomeProps) {
               <motion.div key={prog.id} variants={itemVariants}>
                 <ProgramCard
                   program={prog}
-                  onSelect={(p) => onNavigate('#programs')}
+                  onSelect={(p) => onNavigate('/programs')}
                 />
               </motion.div>
             ))}
           </motion.div>
 
           <div className="mt-12 text-center">
-            <SecondaryButton onClick={() => onNavigate('#programs')}>
+            <SecondaryButton onClick={() => onNavigate('/programs')}>
               Explore All 8 Fitness Schemes &rarr;
             </SecondaryButton>
           </div>
@@ -276,7 +276,7 @@ export default function Home({ onNavigate, id }: HomeProps) {
                 <span>Mark routine completed to trigger performance streak</span>
               </li>
             </ul>
-            <PrimaryButton onClick={() => onNavigate('#daily-workout')}>
+            <PrimaryButton onClick={() => onNavigate('/daily-workout')}>
               View Complete Weekly Timetable
             </PrimaryButton>
           </div>
@@ -285,7 +285,7 @@ export default function Home({ onNavigate, id }: HomeProps) {
           <div className="lg:col-span-6 w-full">
             <WorkoutCard
               workout={todayWorkout}
-              onExplore={() => onNavigate('#daily-workout')}
+              onExplore={() => onNavigate('/daily-workout')}
             />
           </div>
         </Container>
@@ -371,13 +371,13 @@ export default function Home({ onNavigate, id }: HomeProps) {
               <TrainerCard
                 key={tr.id}
                 trainer={tr}
-                onBook={() => onNavigate('#contact')}
+                onBook={() => onNavigate('/contact')}
               />
             ))}
           </div>
 
           <div className="mt-12 text-center">
-            <SecondaryButton onClick={() => onNavigate('#trainers')}>
+            <SecondaryButton onClick={() => onNavigate('/trainers')}>
               Meet All 6 Elite Coaches &rarr;
             </SecondaryButton>
           </div>
@@ -398,7 +398,7 @@ export default function Home({ onNavigate, id }: HomeProps) {
               <PricingCard
                 key={plan.id}
                 plan={plan}
-                onSelect={() => onNavigate('#contact')}
+                onSelect={() => onNavigate('/contact')}
               />
             ))}
           </div>
@@ -427,8 +427,8 @@ export default function Home({ onNavigate, id }: HomeProps) {
 
       {/* 9. Final Universal CTA */}
       <CTASection
-        onPrimaryClick={() => onNavigate('#membership')}
-        onSecondaryClick={() => onNavigate('#contact')}
+        onPrimaryClick={() => onNavigate('/membership')}
+        onSecondaryClick={() => onNavigate('/contact')}
       />
     </div>
   );

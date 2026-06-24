@@ -1,32 +1,33 @@
 import Container from '../common/Container';
+import { Link } from 'react-router-dom';
 import { Dumbbell, Phone, Mail, MapPin, Instagram, Twitter, Linkedin, Facebook, Sparkles } from 'lucide-react';
 
 interface FooterProps {
-  onNavigate: (hash: string) => void;
+  onNavigate: (path: string) => void;
   id?: string;
 }
 
 export default function Footer({ onNavigate, id }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
-  const handleLinkClick = (hash: string) => {
-    onNavigate(hash);
+  const handleLinkClick = (path: string) => {
+    onNavigate(path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const quickLinks = [
-    { label: 'Gym Story & Values', hash: '#about' },
-    { label: 'Workout Programs', hash: '#programs' },
-    { label: 'Timetable Schedule', hash: '#schedule' },
-    { label: 'Membership Plans', hash: '#membership' },
-    { label: 'Advice Articles', hash: '#blog' },
+    { label: 'Gym Story & Values', hash: '/about' },
+    { label: 'Workout Programs', hash: '/programs' },
+    { label: 'Timetable Schedule', hash: '/schedule' },
+    { label: 'Membership Plans', hash: '/membership' },
+    { label: 'Advice Articles', hash: '/blog' },
   ];
 
   const programLinks = [
-    { label: 'Strength foundations', hash: '#programs' },
-    { label: 'Metabolic Weight Loss', hash: '#programs' },
-    { label: 'Hypertrophy Mass Builder', hash: '#programs' },
-    { label: 'HIIT Burn Catalyst', hash: '#programs' },
+    { label: 'Strength foundations', hash: '/programs' },
+    { label: 'Metabolic Weight Loss', hash: '/programs' },
+    { label: 'Hypertrophy Mass Builder', hash: '/programs' },
+    { label: 'HIIT Burn Catalyst', hash: '/programs' },
   ];
 
   return (
@@ -38,21 +39,20 @@ export default function Footer({ onNavigate, id }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12 text-left">
           {/* Brand Col */}
           <div className="flex flex-col gap-5">
-            <a
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                handleLinkClick('#home');
-              }}
+            <Link
+              to="/home"
+              onClick={() => handleLinkClick('/home')}
               className="flex items-center gap-2 text-slate-900 dark:text-white select-none cursor-pointer"
             >
-              {/* <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-500 text-stone-950">
-                <Dumbbell size={18} className="stroke-[2.5]" />
-              </div> */}
-              <span className="text-lg font-black tracking-tighter uppercase">
-                Flexora<span className="text-emerald-500">Fit</span>
-              </span>
-            </a>
+              <div className="flex items-center justify-center w-56 h-16 overflow-hidden">
+                <img
+                  src="/logo.png"
+                  alt="FlexoraFit Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+            </Link>
             <p className="text-xs lg:text-sm text-slate-600 dark:text-stone-400 font-medium leading-relaxed">
               Train Daily. Transform Stronger. FlexoraFit is a premium physical fitness platform engineered around science-backed daily workouts, expert coaches, and custom macro nutrition models.
             </p>
@@ -105,16 +105,13 @@ export default function Footer({ onNavigate, id }: FooterProps) {
             <ul className="space-y-2 text-xs lg:text-sm font-semibold">
               {quickLinks.map((link, idx) => (
                 <li key={idx}>
-                  <a
-                    href={link.hash}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleLinkClick(link.hash);
-                    }}
+                  <Link
+                    to={link.hash}
+                    onClick={() => handleLinkClick(link.hash)}
                     className="text-slate-650 hover:text-emerald-600 dark:text-stone-400 dark:hover:text-emerald-450 transition-colors duration-200 outline-none"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -128,16 +125,13 @@ export default function Footer({ onNavigate, id }: FooterProps) {
             <ul className="space-y-2 text-xs lg:text-sm font-semibold">
               {programLinks.map((link, idx) => (
                 <li key={idx}>
-                  <a
-                    href={link.hash}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleLinkClick(link.hash);
-                    }}
+                  <Link
+                    to={link.hash}
+                    onClick={() => handleLinkClick(link.hash)}
                     className="text-slate-650 hover:text-emerald-600 dark:text-stone-400 dark:hover:text-emerald-450 transition-colors duration-200 outline-none capitalize"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -176,9 +170,9 @@ export default function Footer({ onNavigate, id }: FooterProps) {
             <span>&copy; {currentYear} FlexoraFit. All performance rights reserved.</span>
           </div>
           <div className="flex gap-4">
-            <button onClick={() => handleLinkClick('#privacy-policy')} className="hover:text-emerald-500 font-medium cursor-pointer">Privacy Policy</button>
-            <button onClick={() => handleLinkClick('#terms-of-service')} className="hover:text-emerald-500 font-medium cursor-pointer">Terms of Service</button>
-            <button onClick={() => handleLinkClick('#liability-waiver')} className="hover:text-emerald-500 font-medium cursor-pointer">Liability Waiver</button>
+            <Link to="/privacy-policy" onClick={() => handleLinkClick('/privacy-policy')} className="hover:text-emerald-500 font-medium cursor-pointer">Privacy Policy</Link>
+            <Link to="/terms-of-service" onClick={() => handleLinkClick('/terms-of-service')} className="hover:text-emerald-500 font-medium cursor-pointer">Terms of Service</Link>
+            <Link to="/liability-waiver" onClick={() => handleLinkClick('/liability-waiver')} className="hover:text-emerald-500 font-medium cursor-pointer">Liability Waiver</Link>
           </div>
         </div>
       </Container>

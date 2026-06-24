@@ -73,7 +73,7 @@ export default function Membership() {
               <PricingCard
                 key={plan.id}
                 plan={plan}
-                onSelect={() => window.open('#contact', '_self')}
+                onSelect={() => window.open('/contact', '_self')}
               />
             ))}
           </div>
@@ -204,8 +204,8 @@ export default function Membership() {
         title="Ready to transform your physical boundaries?"
         primaryText="Select My Plan Now"
         secondaryText="Submit Consult Query"
-        onPrimaryClick={() => window.open('#contact', '_self')}
-        onSecondaryClick={() => window.open('#contact', '_self')}
+        onPrimaryClick={() => window.open('/contact', '_self')}
+        onSecondaryClick={() => window.open('/contact', '_self')}
       />
     </div>
   );

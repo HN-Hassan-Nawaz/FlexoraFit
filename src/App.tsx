@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeProvider } from './components/theme/ThemeProvider';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
 // Subpage Views
 import Home from './components/pages/Home';
-import About from './components/pages/About';
+import About from './components/pages/about';
 import Programs from './components/pages/Programs';
 import DailyWorkout from './components/pages/DailyWorkout';
 import Trainers from './components/pages/Trainers';
@@ -21,100 +22,55 @@ import LiabilityWaiver from './components/pages/LiabilityWaiver';
 import { motion, AnimatePresence } from 'motion/react';
 
 function AppContent() {
-  const [hash, setHash] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return window.location.hash || '#home';
-    }
-    return '#home';
-  });
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const activeHash = window.location.hash || '#home';
-      setHash(activeHash);
-      // Ensure page scrolls to top instantly on swap
-      window.scrollTo({ top: 0 });
-    };
-    
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+    window.scrollTo({ top: 0 });
+  }, [location.pathname]);
 
-  const navigateTo = (newHash: string) => {
-    window.location.hash = newHash;
-  };
-
-  const renderActivePage = () => {
-    switch (hash) {
-      case '#home':
-        return <Home onNavigate={navigateTo} />;
-      case '#about':
-        return <About />;
-      case '#programs':
-        return <Programs />;
-      case '#daily-workout':
-        return <DailyWorkout />;
-      case '#trainers':
-        return <Trainers onNavigate={navigateTo} />;
-      case '#schedule':
-        return <Schedule />;
-      case '#membership':
-        return <Membership />;
-      case '#nutrition':
-        return <Nutrition />;
-      case '#blog':
-        return <Blog />;
-      case '#contact':
-        return <Contact />;
-      case '#privacy-policy':
-        return <PrivacyPolicy />;
-      case '#terms-of-service':
-        return <TermsOfService />;
-      case '#liability-waiver':
-        return <LiabilityWaiver />;
-      default:
-        // Graceful fallback of route matches
-        if (hash.startsWith('#')) {
-          const matchedRoute = hash.slice(1);
-          if (matchedRoute === 'home') return <Home onNavigate={navigateTo} />;
-          if (matchedRoute === 'about') return <About />;
-          if (matchedRoute === 'programs') return <Programs />;
-          if (matchedRoute === 'daily-workout') return <DailyWorkout />;
-          if (matchedRoute === 'trainers') return <Trainers onNavigate={navigateTo} />;
-          if (matchedRoute === 'schedule') return <Schedule />;
-          if (matchedRoute === 'membership') return <Membership />;
-          if (matchedRoute === 'nutrition') return <Nutrition />;
-          if (matchedRoute === 'blog') return <Blog />;
-          if (matchedRoute === 'contact') return <Contact />;
-          if (matchedRoute === 'privacy-policy') return <PrivacyPolicy />;
-          if (matchedRoute === 'terms-of-service') return <TermsOfService />;
-          if (matchedRoute === 'liability-waiver') return <LiabilityWaiver />;
-        }
-        return <Home onNavigate={navigateTo} />;
-    }
+  const navigateTo = (path: string) => {
+    navigate(path);
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-stone-950 text-slate-800 dark:text-stone-300 transition-colors duration-300 antialiased selection:bg-emerald-500 selection:text-white">
       {/* Sticky Top Interactive Glassmorphic Navbar */}
-      <Navbar currentHash={hash} onNavigate={navigateTo} />
+      <Navbar currentPath={location.pathname} onNavigate={navigateTo} />
 
-      {/* Main viewport canvas with layout transitions */}
-      <main className="flex-grow">
+      {/* Main Content Area */}
+      <main className="flex-1 flex flex-col">
         <AnimatePresence mode="wait">
           <motion.div
-            key={hash}
+            key={location.pathname}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            transition={{ duration: 0.3 }}
+            className="flex-1"
           >
-            {renderActivePage()}
+            <Routes>
+              <Route path="/" element={<Home onNavigate={navigateTo} />} />
+              <Route path="/home" element={<Home onNavigate={navigateTo} />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/programs" element={<Programs />} />
+              <Route path="/daily-workout" element={<DailyWorkout />} />
+              <Route path="/trainers" element={<Trainers onNavigate={navigateTo} />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/membership" element={<Membership />} />
+              <Route path="/nutrition" element={<Nutrition />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/liability-waiver" element={<LiabilityWaiver />} />
+              <Route path="*" element={<Home onNavigate={navigateTo} />} />
+            </Routes>
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Navigation Sitemap Footer */}
+      {/* Footer */}
       <Footer onNavigate={navigateTo} />
     </div>
   );
@@ -122,8 +78,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }

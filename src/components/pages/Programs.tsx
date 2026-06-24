@@ -187,7 +187,7 @@ export default function Programs() {
                     Close Directory
                   </button>
                   <a
-                    href="#contact"
+                    href="/contact"
                     onClick={() => setSelectedProgram(null)}
                     className="py-3 px-6 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black uppercase tracking-wider transition-colors shadow-md shadow-emerald-500/10 cursor-pointer outline-none text-center"
                   >

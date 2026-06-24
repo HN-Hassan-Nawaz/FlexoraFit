@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Container from '../common/Container';
 import ThemeToggle from '../theme/ThemeToggle';
 import { Dumbbell, Menu, X, Sparkles, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface NavbarProps {
-  currentHash: string;
-  onNavigate: (hash: string) => void;
+  currentPath: string;
+  onNavigate: (path: string) => void;
   id?: string;
 }
 
-export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
+export default function Navbar({ currentPath, onNavigate, id }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -18,29 +19,29 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
   const [exploreMobileOpen, setExploreMobileOpen] = useState(false);
   const [moreMobileOpen, setMoreMobileOpen] = useState(false);
 
-  // Active hash handler representing routing
-  const activeRoute = currentHash || '#home';
+  // Active path handler representing routing
+  const activeRoute = currentPath || '/home';
 
   // 1. Core links that stay visible on both desktop and mobile
   const coreLinks = [
-    { label: 'Home', hash: '#home' },
-    { label: 'About Us', hash: '#about' },
-    { label: 'Programs', hash: '#programs' },
-    { label: 'Daily Workout', hash: '#daily-workout' },
-    { label: 'Contact Us', hash: 'contact' },
+    { label: 'Home', hash: '/home' },
+    { label: 'About Us', hash: '/about' },
+    { label: 'Programs', hash: '/programs' },
+    { label: 'Daily Workout', hash: '/daily-workout' },
+    { label: 'Contact Us', hash: '/contact' },
   ];
 
   // 2. Explore Group Links
   const exploreLinks = [
-    { label: 'Our Trainers', hash: '#trainers' },
-    { label: 'Class Schedule', hash: '#schedule' },
-    { label: 'Memberships', hash: '#membership' },
+    { label: 'Our Trainers', hash: '/trainers' },
+    { label: 'Class Schedule', hash: '/schedule' },
+    { label: 'Memberships', hash: '/membership' },
   ];
 
   // 3. Resources Group Links
   const resourceLinks = [
-    { label: 'Nutrition Blog', hash: '#nutrition' },
-    { label: 'Articles & Blog', hash: '#blog' },
+    { label: 'Nutrition Blog', hash: '/nutrition' },
+    { label: 'Articles & Blog', hash: '/blog' },
     
   ];
 
@@ -56,8 +57,8 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLinkClick = (hash: string) => {
-    onNavigate(hash);
+  const handleLinkClick = (path: string) => {
+    onNavigate(path);
     setIsOpen(false);
     setExploreMobileOpen(false);
     setMoreMobileOpen(false);
@@ -80,30 +81,29 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
       >
         <Container className="h-20 flex items-center justify-between">
           {/* Logo Brand */}
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              handleLinkClick('#home');
-            }}
+          <Link
+            to="/home"
+            onClick={() => handleLinkClick('/home')}
             className="flex items-center gap-2 text-slate-900 dark:text-white group select-none cursor-pointer z-50"
           >
-            <span className="text-xl font-black tracking-tighter uppercase font-sans">
-              Flexora<span className="text-emerald-500">Fit</span>
-            </span>
-          </a>
+            <div className="flex items-center justify-center w-56 h-16 overflow-hidden">
+                <img
+                  src="/logo.png"
+                  alt="FlexoraFit Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+           
+          </Link>
 
           {/* DESKTOP NAVIGATION LINKS - Optimized with Hover Dropdowns */}
           <div className="hidden lg:flex items-center gap-6">
             {/* Core Desktop Links */}
             {coreLinks.map((link) => (
-              <a
+              <Link
                 key={link.hash}
-                href={link.hash}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick(link.hash);
-                }}
+                to={link.hash}
+                onClick={() => handleLinkClick(link.hash)}
                 className={`relative py-1.5 text-xs font-black uppercase tracking-wider transition-colors duration-200 outline-none select-none ${
                   activeRoute === link.hash
                     ? 'text-emerald-600 dark:text-emerald-400'
@@ -118,7 +118,7 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
-              </a>
+              </Link>
             ))}
 
             {/* Desktop Dropdown 1: Explore */}
@@ -138,13 +138,10 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 invisible opacity-0 group-hover/dropdown:visible group-hover/dropdown:opacity-100 transition-all duration-200 w-48 z-50">
                 <div className="bg-white dark:bg-stone-900 border border-slate-100 dark:border-stone-800 rounded-xl shadow-xl py-2 flex flex-col backdrop-blur-md">
                   {exploreLinks.map((link) => (
-                    <a
+                    <Link
                       key={link.hash}
-                      href={link.hash}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleLinkClick(link.hash);
-                      }}
+                      to={link.hash}
+                      onClick={() => handleLinkClick(link.hash)}
                       className={`px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide transition-colors ${
                         activeRoute === link.hash
                           ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-450'
@@ -152,7 +149,7 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
                       }`}
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -175,13 +172,10 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 invisible opacity-0 group-hover/dropdown:visible group-hover/dropdown:opacity-100 transition-all duration-200 w-48 z-50">
                 <div className="bg-white dark:bg-stone-900 border border-slate-100 dark:border-stone-800 rounded-xl shadow-xl py-2 flex flex-col backdrop-blur-md">
                   {resourceLinks.map((link) => (
-                    <a
+                    <Link
                       key={link.hash}
-                      href={link.hash}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleLinkClick(link.hash);
-                      }}
+                      to={link.hash}
+                      onClick={() => handleLinkClick(link.hash)}
                       className={`px-4 py-2.5 text-[11px] font-bold uppercase tracking-wide transition-colors ${
                         activeRoute === link.hash
                           ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-450'
@@ -189,7 +183,7 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
                       }`}
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -202,7 +196,7 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => handleLinkClick('#membership')}
+              onClick={() => handleLinkClick('/membership')}
               className="px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider cursor-pointer shadow-md shadow-emerald-500/10 transition-all duration-300 outline-none"
             >
               <div className="flex items-center gap-1.5">
@@ -214,7 +208,7 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
 
           {/* Mobile Activators */}
           <div className="flex lg:hidden items-center gap-3">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-stone-900 dark:hover:bg-stone-850 text-slate-700 dark:text-stone-300 border border-slate-200 dark:border-stone-800 transition-colors cursor-pointer outline-none focus:ring-2 focus:ring-emerald-500"
@@ -237,13 +231,10 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
             >
               {/* 1. Mobile Core Links */}
               {coreLinks.map((link) => (
-                <a
+                <Link
                   key={link.hash}
-                  href={link.hash}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick(link.hash);
-                  }}
+                  to={link.hash}
+                  onClick={() => handleLinkClick(link.hash)}
                   className={`py-3 px-4 rounded-lg text-sm font-black uppercase tracking-wider text-left transition-colors ${
                     activeRoute === link.hash
                       ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-450'
@@ -251,7 +242,7 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
 
               {/* 2. Mobile Accordion: Explore Gym */}
@@ -275,13 +266,10 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
                       className="overflow-hidden pl-4 flex flex-col gap-1 bg-slate-50/50 dark:bg-stone-900/30 rounded-lg mt-1"
                     >
                       {exploreLinks.map((link) => (
-                        <a
+                        <Link
                           key={link.hash}
-                          href={link.hash}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleLinkClick(link.hash);
-                          }}
+                          to={link.hash}
+                          onClick={() => handleLinkClick(link.hash)}
                           className={`py-2.5 px-4 rounded-md text-xs font-bold uppercase tracking-wide text-left transition-colors ${
                             activeRoute === link.hash
                               ? 'text-emerald-600 dark:text-emerald-400 font-black'
@@ -289,7 +277,7 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
                           }`}
                         >
                           {link.label}
-                        </a>
+                        </Link>
                       ))}
                     </motion.div>
                   )}
@@ -317,13 +305,10 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
                       className="overflow-hidden pl-4 flex flex-col gap-1 bg-slate-50/50 dark:bg-stone-900/30 rounded-lg mt-1"
                     >
                       {resourceLinks.map((link) => (
-                        <a
+                        <Link
                           key={link.hash}
-                          href={link.hash}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleLinkClick(link.hash);
-                          }}
+                          to={link.hash}
+                          onClick={() => handleLinkClick(link.hash)}
                           className={`py-2.5 px-4 rounded-md text-xs font-bold uppercase tracking-wide text-left transition-colors ${
                             activeRoute === link.hash
                               ? 'text-emerald-600 dark:text-emerald-400 font-black'
@@ -331,7 +316,7 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
                           }`}
                         >
                           {link.label}
-                        </a>
+                        </Link>
                       ))}
                     </motion.div>
                   )}
@@ -341,7 +326,7 @@ export default function Navbar({ currentHash, onNavigate, id }: NavbarProps) {
               {/* 4. Mobile Action Button Area */}
               <div className="pt-4 border-t border-slate-100 dark:border-stone-900 mt-2">
                 <button
-                  onClick={() => handleLinkClick('#membership')}
+                  onClick={() => handleLinkClick('/membership')}
                   className="w-full py-3.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-extrabold text-sm uppercase tracking-wider shadow-md shadow-emerald-500/10 cursor-pointer"
                 >
                   Join FlexoraFit Now

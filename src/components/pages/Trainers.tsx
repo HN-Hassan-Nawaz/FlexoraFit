@@ -52,7 +52,7 @@ export default function Trainers({ onNavigate, id }: TrainersProps) {
               <TrainerCard
                 key={tr.id}
                 trainer={tr}
-                onBook={() => onNavigate('#contact')}
+                onBook={() => onNavigate('/contact')}
               />
             ))}
           </div>
@@ -72,7 +72,7 @@ export default function Trainers({ onNavigate, id }: TrainersProps) {
             Book a complimentary, obligation-free 20-minute movement consult. We assess your joint mechanics, current splits, and historical sports limits to coordinate the perfect alignment.
           </p>
           <button
-            onClick={() => onNavigate('#contact')}
+            onClick={() => onNavigate('/contact')}
             className="py-3.5 px-8 rounded-lg bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-750 text-white font-extrabold text-xs uppercase tracking-wider shadow-md shadow-emerald-500/10 cursor-pointer outline-none focus:ring-2 focus:ring-emerald-500"
           >
             Arrange Free Coach Consult
