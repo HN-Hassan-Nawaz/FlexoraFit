@@ -1,20 +1,21 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+FlexoraFit
 
-# Run and deploy your AI Studio app
+A responsive fullstack fitness application built with the MERN stack and integrated with the Gemini API for personalized workout insights.
 
-This contains everything you need to run your app locally.
+🔗 Live Preview: View Website/WebApp
 
-View your app in AI Studio: https://ai.studio/apps/241b056d-2eae-422b-8f36-499e0aadb221
+Getting Started Locally
+Prerequisites
+Make sure you have Node.js installed on your machine.
 
-## Run Locally
+Installation
+1. Clone the repository: git clone https://github.com/HN-Hassan-Nawaz/FlexoraFit.git cd FlexoraFit
 
-**Prerequisites:**  Node.js
+2. Install dependencies: npm install
 
+3. Environment Setup: Create a .env.local file in the root directory and add your API key:
+   ```
+   GEMINI_API_KEY=your_actual_api_key_here
+   ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+4. Start the development server: npm run dev
