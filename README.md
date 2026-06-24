@@ -4,7 +4,7 @@ A responsive fullstack fitness application built with the MERN stack and integra
 
 About the Project
 
-FlexoraFit is a modern, fullstack fitness management and training platform built using the MERN Stack (MongoDB, Express.js, React, Node.js) and styled with Tailwind CSS. 
+FlexoraFit is a modern, fullstack fitness management and training platform built using the MERN Stack (Next.js, React, Vite, Tailwind CSS) and styled with Tailwind CSS.
 
 Unlike traditional, static fitness apps, FlexoraFit delivers a highly interactive experience featuring dynamic workout filtering, a state-driven activity tracker, macro-calibrated nutrition plans, and an automated fitness console.
 
@@ -14,7 +14,7 @@ Key Features
 * Curated Training Programs: A fluid marketplace interface where users can instantly filter premium training plans (Strength, Weight Loss, Hypertrophy, HIIT) based on experience levels.
 * Interactive Workout Tracker: Breaks down routines into granular splits showing exact sets, working rep-volumes, and precise rest-time targets. Users can mark routines complete to trigger active performance streaks.
 * Metabolic Meal Profiles: Structured nutritional guides detailing macro breakdowns (Protein/Carbs/Fats) and targeted calorie tiers with fully mapped out breakfast and lunch schedules.
-* Elite Coaching Core: A specialized directory highlighting certified trainers, their domain expertise, and industry-standard credentials (NASM, NSCA, CSCS).
+* Elite Coaching Core: A specialized directory highlighting certified trainers.
 
 Tech Stack
 
@@ -37,7 +37,9 @@ Installation:
    ```
 
 2. Install dependencies: 
+   ```
    npm install
+   ```
 
 3. Environment Setup: Create a .env.local file in the root directory and add your API key:
    ```
