@@ -46,4 +46,7 @@ Installation:
    GEMINI_API_KEY=your_actual_api_key_here
    ```
 
-4. Start the development server: npm run dev
+4. Start the development server: 
+   ```
+   npm run dev
+   ```
