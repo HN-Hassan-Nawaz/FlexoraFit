@@ -6,7 +6,7 @@ import Footer from './components/layout/Footer';
 
 // Subpage Views
 import Home from './components/pages/Home';
-import About from './components/pages/about';
+import About from './components/pages/About';
 import Programs from './components/pages/Programs';
 import DailyWorkout from './components/pages/DailyWorkout';
 import Trainers from './components/pages/Trainers';
